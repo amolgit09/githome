@@ -3,6 +3,9 @@ terraform {
 }
 provider "azurerm" {
    version = "=2.0.0"
+   storage_account_name = "tfdemoams"
+   container_name = "tfstate"
+   key = "TWgV1RWnMDVxtZQmatEZpujuEo3RSJejufQsSUIDAKItgLFLxBYsxz7YjC3F6wLBYnvClz1AbgsBZ/kZT6hcmA=="
    features {}
 }
 resource "azurerm_resource_group" "rg" {
