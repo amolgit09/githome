@@ -3,7 +3,7 @@ terraform {
     resource_group_name = "rg_terraform"
     storage_account_name = "tfdemoams"
     container_name = "tfstate"
-    key = "TWgV1RWnMDVxtZQmatEZpujuEo3RSJejufQsSUIDAKItgLFLxBYsxz7YjC3F6wLBYnvClz1AbgsBZ/kZT6hcmA=="
+    key = "terraform.tfstate"
    }
 }
 provider "azurerm" {
