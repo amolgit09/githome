@@ -21,3 +21,9 @@ module "vnet_setup" {
     new_application_prefix = "10.39.11.0/24"
     new_backend_prefix = "10.39.12.0/24"
 }
+
+module "keyVault_setup" {
+   source = "./modules/keyvault_setup"
+   resource_group_name = "terrform-demo-rg"
+   location = "westeurope"
+}
