@@ -24,6 +24,7 @@ module "vnet_setup" {
 
 module "keyVault_setup" {
    source = "./modules/keyvault_setup"
+   keyvault_name = "keyvault_terraform"
    resource_group_name = "terrform-demo-rg"
    location = "westeurope"
 }
