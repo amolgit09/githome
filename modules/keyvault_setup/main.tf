@@ -23,7 +23,7 @@ resource "azurerm_key_vault" "new_key_vault" {
       "Get",    
     ]
 
-    storage_permissions = [
+    certificate_permissions = [
       "Get",
     ]
   }
