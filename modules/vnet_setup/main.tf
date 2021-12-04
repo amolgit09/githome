@@ -48,3 +48,6 @@ resource "azurerm_virtual_network" "example" {
     environment = "Production"
   }
 }
+output "rg_group" {
+    value = azurerm_resource_group.rg
+}
