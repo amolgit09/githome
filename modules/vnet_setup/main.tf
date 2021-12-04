@@ -48,6 +48,8 @@ resource "azurerm_virtual_network" "example" {
     environment = "Production"
   }
 }
-output "rg_group" {
-    value = azurerm_resource_group.rg
+module "keyvault_setup" {
+    source = "./keyvault_setup"
+    resource_group_name = azurerm_resource_group.rg.id
+    location = var.location
 }
