@@ -10,11 +10,6 @@ provider "azurerm" {
    version = "=2.0.0"
    features {}
 }
-
-resource "azurerm_resource_group" "main" {
-  name     = "${var.prefix}-resources"
-  location = var.location
-}
 resource "azurerm_network_interface" "main" {
   name                = "${var.prefix}-nic"
   resource_group_name = var.resource_group_name
