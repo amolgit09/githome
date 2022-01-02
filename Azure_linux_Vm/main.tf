@@ -43,7 +43,7 @@ resource "azurerm_linux_virtual_machine" "main" {
   admin_password                  = var.password
   disable_password_authentication = false
   network_interface_ids = [
-    azurerm_network_interface.main.id,
+    azurerm_network_interface.main[count.index].id,
   ]
 
   source_image_reference {
