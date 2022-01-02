@@ -10,8 +10,12 @@ provider "azurerm" {
    version = "=2.0.0"
    features {}
 }
+locals {
+  instance_count = 2
+}
 resource "azurerm_network_interface" "main" {
-  name                = "${var.prefix}-nic"
+  count               = local.instance_count
+  name                = "${var.prefix}-nic${count.index}"
   resource_group_name = var.resource_group_name
   location            = var.location
 
@@ -23,13 +27,15 @@ resource "azurerm_network_interface" "main" {
   }
 }
 resource "azurerm_public_ip" "pip" {
-  name                = "${var.prefix}-pip"
+  count               = local.instance_count
+  name                = "${var.prefix}-pip${count.index}"
   resource_group_name = var.resource_group_name
   location            = var.location
   allocation_method   = "Dynamic"
 }
 resource "azurerm_linux_virtual_machine" "main" {
-  name                            = "${var.prefix}-vm"
+  count                           = local.instance_count
+  name                            = "${var.prefix}-vm${count.index}"
   resource_group_name             = var.resource_group_name
   location                        = var.location
   size                            = "Standard_D2s_v3"
