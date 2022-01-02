@@ -22,14 +22,12 @@ resource "azurerm_network_interface" "main" {
     public_ip_address_id          = azurerm_public_ip.pip.id
   }
 }
-
 resource "azurerm_public_ip" "pip" {
   name                = "${var.prefix}-pip"
   resource_group_name = var.resource_group_name
   location            = var.location
   allocation_method   = "Dynamic"
 }
-
 resource "azurerm_linux_virtual_machine" "main" {
   name                            = "${var.prefix}-vm"
   resource_group_name             = var.resource_group_name
@@ -70,7 +68,6 @@ resource "azurerm_managed_disk" "data" {
   }
 
 }
-
 resource "azurerm_virtual_machine_data_disk_attachment" "data" {
   virtual_machine_id = azurerm_linux_virtual_machine.main.id
   managed_disk_id    = azurerm_managed_disk.data.id
