@@ -47,7 +47,6 @@ resource "azurerm_linux_virtual_machine" "main" {
     offer = "RHEL"
     sku = "82gen2"
     version = "latest"
-    exactVersion = "8.2.2021091102"
   }
 
   os_disk {
