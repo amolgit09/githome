@@ -23,3 +23,8 @@ variable "password" {
       type = string
     description = "Need subnet to assign IP for new VM"
 }
+variable "data_disk_size" {
+      type = number
+    description = "Enter size of data disk"
+  
+}

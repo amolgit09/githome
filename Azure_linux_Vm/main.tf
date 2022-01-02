@@ -57,3 +57,23 @@ resource "azurerm_linux_virtual_machine" "main" {
     environment = "${var.prefix}-staging"
   }
 }
+resource "azurerm_managed_disk" "data" {
+  name                 = "data"
+  location             = var.location
+  create_option        = "Empty"
+  disk_size_gb         = var.data_disk_size
+  resource_group_name  = var.resource_group_name
+  storage_account_type = "Standard_LRS"
+
+  tags = {
+    environment = "${var.prefix}-staging"
+  }
+
+}
+
+resource "azurerm_virtual_machine_data_disk_attachment" "data" {
+  virtual_machine_id = azurerm_linux_virtual_machine.main.id
+  managed_disk_id    = azurerm_managed_disk.data.id
+  lun                = 0
+  caching            = "None"
+}
