@@ -43,10 +43,11 @@ resource "azurerm_linux_virtual_machine" "main" {
   ]
 
   source_image_reference {
-    publisher = "Canonical"
-    offer     = "UbuntuServer"
-    sku       = "18.04-LTS"
-    version   = "latest"
+    publisher = "RedHat"
+    offer = "RHEL"
+    sku = "82gen2"
+    version = "latest"
+    exactVersion = "8.2.2021091102"
   }
 
   os_disk {
