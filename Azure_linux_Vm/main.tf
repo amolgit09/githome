@@ -62,7 +62,8 @@ resource "azurerm_linux_virtual_machine" "main" {
   }
 }
 resource "azurerm_managed_disk" "data" {
-  name                 = "data"
+  count                = local.instance_count
+  name                 = "data${count.index}"
   location             = var.location
   create_option        = "Empty"
   disk_size_gb         = var.data_disk_size
@@ -75,7 +76,7 @@ resource "azurerm_managed_disk" "data" {
 
 }
 resource "azurerm_virtual_machine_data_disk_attachment" "data" {
-  virtual_machine_id = azurerm_linux_virtual_machine.main.id
+  virtual_machine_id = azurerm_linux_virtual_machine.main[count.index].id
   managed_disk_id    = azurerm_managed_disk.data.id
   lun                = 0
   caching            = "None"
