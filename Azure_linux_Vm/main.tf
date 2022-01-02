@@ -76,8 +76,9 @@ resource "azurerm_managed_disk" "data" {
 
 }
 resource "azurerm_virtual_machine_data_disk_attachment" "data" {
+  count                = local.instance_count
   virtual_machine_id = azurerm_linux_virtual_machine.main[count.index].id
-  managed_disk_id    = azurerm_managed_disk.data.id
+  managed_disk_id    = azurerm_managed_disk.data[count.index].id
   lun                = 0
   caching            = "None"
 }
