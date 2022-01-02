@@ -23,7 +23,7 @@ resource "azurerm_network_interface" "main" {
     name                          = "internal"
     subnet_id                     = var.subnet
     private_ip_address_allocation = "Dynamic"
-    public_ip_address_id          = azurerm_public_ip.pip"$${count.index}".id
+    public_ip_address_id          = azurerm_public_ip.pip.id
   }
 }
 resource "azurerm_public_ip" "pip" "$${count.index}" {
