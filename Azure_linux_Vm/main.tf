@@ -20,7 +20,7 @@ resource "azurerm_network_interface" "main" {
   location            = var.location
 
   ip_configuration {
-    name                          = "internal"
+    name                          = "internal${count.index}"
     subnet_id                     = var.subnet
     private_ip_address_allocation = "Dynamic"
     public_ip_address_id          = azurerm_public_ip.pip[count.index].id
