@@ -2,9 +2,15 @@
 import socket
 host_name = socket.gethostname()
 print("I am from", host_name)"""
-from flask import Flask
-from flask_restful import Resource, Api, reqparse
-import pandas as pd
-import ast
-app = Flask(__name__)
-api = Api(app)
+# an object of WSGI application
+from flask import Flask    
+app = Flask(__name__)   # Flask constructor
+  
+# A decorator used to tell the application
+# which URL is associated function
+@app.route('/')      
+def hello():
+    return 'HELLO'
+  
+if __name__=='__main__':
+   app.run()

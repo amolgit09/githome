@@ -1,4 +1,6 @@
 FROM python
 COPY ./test.py /scripts/
+COPY ./requirement.txt /scripts/
 WORKDIR /scripts
-CMD `which python` test.py
+CMD `which pip` install -r requirement.txt;`which python` test.py
+EXPOSE 5000
