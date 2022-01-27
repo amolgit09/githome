@@ -1,0 +1,4 @@
+FROM python
+COPY ./test.py /scripts/
+WORKDIR /scripts
+CMD `which python` test.py
