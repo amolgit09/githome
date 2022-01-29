@@ -10,6 +10,8 @@ app = Flask(__name__)   # Flask constructor
 # which URL is associated function
 @app.route('/')      
 def hello():
+    j = 1 + 1
+    print ("",j)
     return 'HELLO This is Test'
   
 if __name__=='__main__':
