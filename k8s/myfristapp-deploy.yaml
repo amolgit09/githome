@@ -1,0 +1,36 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: myfristapp-deployment
+  labels:
+    app: myfirstapp
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: myfirstapp
+  template:
+    metadata:
+      labels:
+        app: myfirstapp
+    spec:
+      containers:
+      - name: myfirstapp
+        image: amolwadekaredu/myfirstapp:1.2
+        ports:
+        - containerPort: 5000
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: myfirstapp
+  labels:
+    app: myfirstapp
+spec:
+  type: LoadBalancer
+  selector:
+    app: myfirstapp
+  ports:
+    - protocol: TCP
+      port: 5000
+      targetPort: 5000
