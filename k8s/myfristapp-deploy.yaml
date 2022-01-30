@@ -19,6 +19,10 @@ spec:
         image: amolwadekaredu/myfirstapp:1.5
         ports:
         - containerPort: 5000
+        resources:
+          requests:
+            cpu: 100m
+            memory: 100Mi
 ---
 apiVersion: v1
 kind: Service
