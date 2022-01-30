@@ -1,6 +1,8 @@
-FROM python
+FROM python:3.8
+WORKDIR /scripts
 COPY ./test.py /scripts/
 COPY ./requirement.txt /scripts/
-WORKDIR /scripts
-CMD `which pip` install -r requirement.txt;`which python` test.py
+RUN pip install -r requirement.txt
+ENTRYPOINT ["python"]
+CMD ["test.py"]
 EXPOSE 5000
