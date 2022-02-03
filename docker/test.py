@@ -12,6 +12,7 @@ app = Flask(__name__)   # Flask constructor
 def hello():
     j = 1 + 1
     print ("",j)
+    print("This is Test only")
     return 'HELLO This is Test'
   
 if __name__=='__main__':
