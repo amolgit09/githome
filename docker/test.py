@@ -4,7 +4,7 @@ host_name = socket.gethostname()
 print("I am from", host_name)"""
 # an object of WSGI application
 from flask import Flask    
-app = Flask(__name__)   # Flask constructor
+app = Flask(__name__)   # Flask constructor Need to update
   
 # A decorator used to tell the application
 # which URL is associated function
