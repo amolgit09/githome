@@ -12,7 +12,7 @@ app = Flask(__name__)   # Flask constructor Need to update
 def hello():
     j = 1 + 1
     print ("",j)
-    print("This is Test for Jenkins and Git int")
+    print("This is Test for Done")
     return 'HELLO This is Test'
   
 if __name__=='__main__':
