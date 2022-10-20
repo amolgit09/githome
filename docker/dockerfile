@@ -1,8 +1,13 @@
+#Install python 3.9
 FROM python:3.9
+# Chnage work directory
 WORKDIR /scripts
+# copy code files to WORKDIR
 COPY ./test.py /scripts/
+# copy env files to WORKDIR
 COPY ./requirement.txt /scripts/
-RUN pip install -r requirement.txt
+# Install modules
+RUN pip install -r requirement.txt 
 ENTRYPOINT ["python"]
 CMD ["test.py"]
 EXPOSE 5000
