@@ -1,0 +1,9 @@
+num = 1
+vnet_name = "prodction-vnet"
+prefix = "testlinux"
+location = "centralindia"
+resource_group_name = "rg-india"
+subnet = "Fronend"
+username = "amolw"
+password = "Password1234!"
+data_disk_size = "10"

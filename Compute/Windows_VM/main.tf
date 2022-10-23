@@ -2,7 +2,7 @@ terraform {
    backend "azurerm" {
     resource_group_name = "rg-india-terra"
     storage_account_name = "tfdemoamsin"
-    container_name = "computetfstate"
+    container_name = "computetfstatewin"
     key = "terraform.tfstate"
    }
 }
@@ -42,24 +42,24 @@ resource "azurerm_public_ip" "pip" {
   location            = var.location
   allocation_method   = "Dynamic"
 }
-resource "azurerm_linux_virtual_machine" "main" {
+resource "azurerm_windows_virtual_machine" "main" {
   depends_on                      = [var.resource_group_name] 
   count                           = local.instance_count
   name                            = "${var.prefix}-vm${count.index}"
   resource_group_name             = var.resource_group_name
   location                        = var.location
-  size                            = "Standard_D2s_v3"
+  size                            = "Standard_B2ms"
   admin_username                  = var.username
   admin_password                  = var.password
-  disable_password_authentication = false
+  #disable_password_authentication = false
   network_interface_ids = [
     azurerm_network_interface.main[count.index].id,
   ]
 
   source_image_reference {
-    publisher = "RedHat"
-    offer = "RHEL"
-    sku = "82gen2"
+    publisher = "MicrosoftWindowsDesktop"
+    offer = "windows11preview"
+    sku = "win11-21h2-pro"
     version = "latest"
   }
 
@@ -89,7 +89,7 @@ resource "azurerm_managed_disk" "data" {
 resource "azurerm_virtual_machine_data_disk_attachment" "data" {
   depends_on         = [var.resource_group_name] 
   count              = local.instance_count
-  virtual_machine_id = azurerm_linux_virtual_machine.main[count.index].id
+  virtual_machine_id = azurerm_windows_virtual_machine.main[count.index].id
   managed_disk_id    = azurerm_managed_disk.data[count.index].id
   lun                = 0
   caching            = "None"
