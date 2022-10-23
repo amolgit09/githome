@@ -11,8 +11,21 @@ data "azurerm_client_config" "current" {}
 #  name = var.resource_group_name
 #}
 
+resource "null_resource" "previous" {}
+
+resource "time_sleep" "wait_30_seconds" {
+  depends_on = [null_resource.previous]
+
+  create_duration = "30s"
+}
+
+# This resource will create (at least) 30 seconds after null_resource.previous
+resource "null_resource" "next" {
+  depends_on = [time_sleep.wait_30_seconds]
+}
+
 resource "azurerm_key_vault" "new_key_vault" {
-  depends_on                  = [var.resource_group_name]  ######New Line depend status of new resource group
+  depends_on                  = [var.resource_group_name, null_resource.next]  ######New Line depend status of new resource group
   name                        = var.keyvault_name
   #location                    = "${data.azurerm_resource_group.resource_g.location}"
   location                    = var.location

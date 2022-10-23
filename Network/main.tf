@@ -21,22 +21,3 @@ module "vnet_setup" {
     new_application_prefix = "10.39.11.0/24"
     new_backend_prefix = "10.39.12.0/24"
 }
-
-module "keyVault_setup" {
-   source = "./modules/keyvault_setup"
-   keyvault_name = "keyvault-terraform00"
-   resource_group_name = "rg-india"
-   location = "centralindia"
-}
-
-module "VM_deployement" {
-   source = "./module/Linux_Vm"
-   prefix = "testlinux"
-   resource_group_name = "rg-india"
-   location = "centralindia"
-   #vnet_name = "prodction-vnet"
-   subnet = module.vnet_setup.subnet_id.id
-   username = "amolw"
-   password = "Password1234!"
-   data_disk_size = "10"
-}

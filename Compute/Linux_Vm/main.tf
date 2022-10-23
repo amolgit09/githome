@@ -13,8 +13,11 @@ provider "azurerm" {
 locals {
   instance_count = 2
 }
+
+
 resource "azurerm_network_interface" "main" {
-  depends_on          = [var.resource_group_name] 
+  source = "../modules/vnet_setup"
+  depends_on          = [var.subnet] 
   count               = local.instance_count
   name                = "${var.prefix}-nic${count.index}"
   resource_group_name = var.resource_group_name
