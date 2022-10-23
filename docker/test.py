@@ -13,7 +13,7 @@ def hello():
     j = 1 + 2
     print ("",j)
     print("This is Test for Jenkins with Github is working great now re run for demo 4")
-    return 'HELLO This is Test for Jenkins with Github is working great'
+    return 'HELLO This is Test for Jenkins with Github is working great let we try with K8s automation %d',j
   
 if __name__=='__main__':
    app.debug = True
