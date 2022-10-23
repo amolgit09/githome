@@ -60,11 +60,3 @@ resource "azurerm_subnet" "Backend" {
   virtual_network_name = azurerm_virtual_network.example.name
   address_prefixes     = [var.new_backend_prefix]
 }
-
-module "keyVault_setup" {
-   source = "./modules/keyvault_setup"
-   keyvault_name = "keyvault-terraform00"
-   resource_group_name = "rg-india"
-   location = "centralindia"
-   #depends_on = [var.resource_group_name]
-}
