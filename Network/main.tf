@@ -22,7 +22,6 @@ module "vnet_setup" {
     new_backend_prefix = "10.39.12.0/24"
 }
 
-
 module "keyVault_setup" {
    source = "./modules/keyvault_setup"
    keyvault_name = "keyvault-terraform00"
