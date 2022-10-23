@@ -6,11 +6,18 @@ provider "azurerm" {
   }
 }
 data "azurerm_client_config" "current" {}
+#####Add Below details to get resource group which is newly created####
+#data "azurerm_resource_group" "resource_g" {
+#  name = var.resource_group_name
+#}
 
 resource "azurerm_key_vault" "new_key_vault" {
+  depends_on                  = [var.resource_group_name]  ######New Line depend status of new resource group
   name                        = var.keyvault_name
+  #location                    = "${data.azurerm_resource_group.resource_g.location}"
   location                    = var.location
   resource_group_name         = var.resource_group_name
+  #resource_group_name         = "${data.azurerm_resource_group.resource_g.name}"
   enabled_for_disk_encryption = true
   tenant_id                   = data.azurerm_client_config.current.tenant_id
   #soft_delete_retention_days  = 7

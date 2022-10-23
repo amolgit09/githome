@@ -1,7 +1,7 @@
 terraform {
    backend "azurerm" {
-    resource_group_name = "rg_terraform"
-    storage_account_name = "tfdemoams"
+    resource_group_name = "rg-india-terra"
+    storage_account_name = "tfdemoamsin"
     container_name = "tfstate"
     key = "terraform.tfstate"
    }
@@ -13,9 +13,9 @@ provider "azurerm" {
 
 module "vnet_setup" {
     source = "./modules/vnet_setup"
-    resource_group_name = "terrform-demo-rg"
+    resource_group_name = "rg-india"
     vnet_name = "prodction-vnet"
-    location = "westeurope"
+    location = "centralindia"
     new_address_space = ["10.39.0.0/16"]
     new_frontend_prefix = "10.39.10.0/24"
     new_application_prefix = "10.39.11.0/24"
@@ -25,6 +25,6 @@ module "vnet_setup" {
 module "keyVault_setup" {
    source = "./modules/keyvault_setup"
    keyvault_name = "keyvault-terraform00"
-   resource_group_name = "terrform-demo-rg"
-   location = "westeurope"
+   resource_group_name = "rg-india"
+   location = "centralindia"
 }

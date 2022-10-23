@@ -1,10 +1,14 @@
 resource "azurerm_resource_group" "rg" {
    name     = var.resource_group_name
    location = var.location
+   tags = {
+    environment = "Production"
+  }
 }
 
 #####New Addition#####
 resource "azurerm_network_security_group" "example" {
+  depends_on          = [azurerm_resource_group.rg]
   name                = "acceptanceTestSecurityGroup1"
   location            = var.location
   resource_group_name = var.resource_group_name
@@ -17,6 +21,7 @@ resource "azurerm_network_security_group" "example" {
 #}
 
 resource "azurerm_virtual_network" "example" {
+  depends_on          = [azurerm_resource_group.rg]
   name                = var.vnet_name
   location            = var.location
   resource_group_name = var.resource_group_name
