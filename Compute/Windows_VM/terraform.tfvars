@@ -1,6 +1,6 @@
 num = 1
 vnet_name = "prodction-vnet"
-prefix = "testlinux"
+prefix = "Desktopwin"
 location = "centralindia"
 resource_group_name = "rg-india"
 subnet = "Fronend"

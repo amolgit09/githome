@@ -12,7 +12,7 @@ data "azurerm_client_config" "current" {}
 #}
 
 resource "azurerm_key_vault" "new_key_vault" {
-  depends_on                  = [var.resource_group_name, null_resource.next]  ######New Line depend status of new resource group
+  depends_on                  = [var.resource_group_name]  ######New Line depend status of new resource group
   name                        = var.keyvault_name
   #location                    = "${data.azurerm_resource_group.resource_g.location}"
   location                    = var.location
